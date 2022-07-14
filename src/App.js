@@ -1,35 +1,40 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HeaderMain from './Container/HeaderMain';
-import FooterMain from './Container/FooterMain';
-import Home from './Container/Home'
-import Departments from './Container/Departments';
-import Doctors from './Container/Doctors';
-import Medicine from './Container/Medicine';
-import About from './Container/About';
-import Contact from './Container/Contact';
-import Appointment from './Container/Appointment';
-import Login from './Container/Login';
+import { Route } from "react-router-dom/cjs/react-router-dom";
+import { Switch } from "react-router-dom/cjs/react-router-dom.min";
+import About from "./container/About";
+import Doctors from "./container/Doctors";
+import Footer from "./component/Footer";
+import Header from "./component/Header";
+import Department from "./container/Department";
+import Home from "./container/Home";
+import Contact from "./container/Contact";
+// import Appointment from "./container/Appointment";
+import LoginSignup from "./container/LoginSignup";
+import Medicine from "./container/Medicine";
+import UseRef from "./container/UseRef";
+import BookAppointment from "./container/Appointment/BookAppointment";
+import ListAppointment from "./container/Appointment/ListAppointment";
+import PublicRoute from "./container/routers/PublicRoute";
+import PrivetRoute from "./container/routers/PrivetRoute";
 
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path='/' element={<HeaderMain />} >
-          <Route exact path='/' element={<FooterMain />} >
-            <Route index element={<Home />} />
-            <Route exact path='/departments' element={<Departments />} />
-            <Route exact path='/doctors' element={<Doctors />} />
-            <Route exact path='/medicine' element={<Medicine />} />
-            <Route exact path='/about' element={<About />} />
-            <Route exact path='/contact' element={<Contact />} />
-            <Route exact path='/appointment' element={<Appointment />} />
-            <Route exact path='/login' element={<Login />} />
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
+    <>
+      <Header />
+      <Switch>
+        <PublicRoute exact path={'/'} component={Home} />
+        <PublicRoute exact path={'/department'} component={Department} />
+        <PublicRoute exact path={'/doctors'} component={Doctors} />
+        <PublicRoute exact path={'/about'} component={About} />
+        <PublicRoute exact path={'/contact'} component={Contact} />
+        <PublicRoute exact path={'/login'} restrict={true} component={LoginSignup} />
+        <PublicRoute exact path={'/medicine'} component={Medicine} />
+        <Route exact path={'/refs'} component={UseRef} />
+        <PrivetRoute exact path={'/book_apt'} component={BookAppointment} />
+        <PrivetRoute exact path={'/list_apt'} component={ListAppointment} />
+      </Switch>
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;

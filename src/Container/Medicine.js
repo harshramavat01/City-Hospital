@@ -1,55 +1,85 @@
 import React from 'react'
-import List from '../Component/List'
+import List from '../component/List'
 
 const Medicine = () => {
-    const orgData = [
+    const medicineData = [
+
         {
+
             id: 101,
-            name: 'Abacavir',
+
+            medicineName: 'Abacavir',
+
             quantity: 25,
+
             price: 150,
+
             expiry: 2022
+
         },
+
         {
+
             id: 102,
-            name: 'Eltrombopag',
+
+            medicineName: 'Eltrombopag',
+
             quantity: 90,
+
             price: 550,
+
             expiry: 2021
+
         },
+
         {
+
             id: 103,
-            name: 'Meloxicam',
+
+            medicineName: 'Meloxicam',
+
             quantity: 85,
+
             price: 450,
+
             expiry: 2025
+
         },
+
         {
+
             id: 104,
-            name: 'Allopurinol',
+
+            medicineName: 'Allopurinol',
+
             quantity: 50,
+
             price: 600,
+
             expiry: 2023
+
         },
+
         {
+
             id: 105,
-            name: 'Phenytoin',
+
+            medicineName: 'Phenytoin',
+
             quantity: 63,
+
             price: 250,
+
             expiry: 2021
-        }
+
+        },
+
     ]
     return (
         <>
-            <section id="medicine" className="medicine">
-                <div className="container">
-                    <div className="section-title">
-                        <h2>Medicine</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                    </div>
-                    <List data={orgData} />
-                </div>
-            </section>
+            <div className="container">
+                <List data={medicineData} />
+            </div>
         </>
     )
 }

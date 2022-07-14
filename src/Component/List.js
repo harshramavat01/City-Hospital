@@ -1,66 +1,50 @@
 import React from 'react'
+import {
+    Card, CardText, CardBody,
+    CardTitle,  Button,
+} from 'reactstrap';
 
 const List = ({ data }) => {
     return (
         <>
-            <div className="row">
-                {
-                    data.map((v, i) => {
-                        return (
-                            <div key={i} className="col-lg-6 mt-4">
-                                <div className="list d-flex align-items-start">
-                                    {
-                                        v.img ? <div className="pic">
-                                            <img src={v.img} className="img-fluid" alt="" />
-                                        </div> : null
-                                    }
-                                    <div className="list-info">
-                                        {
-                                            v.name ? <h4>{v.name}</h4> : null
-                                        }
-                                        {
-                                            v.designation ? <span>{v.designation}</span> : null
-                                        }
-                                        {
-                                            v.quantity ? <span>Quantity: {v.quantity}</span> : null
-                                        }
-                                        {
-                                            v.desc ? <p>{v.desc}</p> : null
-                                        }
-                                        {
-                                            v.id ? <p>Id: {v.id}</p> : null
-                                        }
-                                        {
-                                            v.price ? <p>Price: {v.price}</p> : null
-                                        }
-                                        {
-                                            v.expiry ? <p>Expiry: {v.expiry}</p> : null
-
-                                        }
-                                        {
-                                            v.social ?
-                                                <div className="social">
-                                                    {
-                                                        v.social.twitter ? <a href={v.social.twitter}><i className="ri-twitter-fill" /></a> : null
-                                                    }
-                                                    {
-                                                        v.social.facebook ? <a href={v.social.facebook}><i className="ri-facebook-fill" /></a> : null
-                                                    }
-                                                    {
-                                                        v.social.instagram ? <a href={v.social.instagram}><i className="ri-instagram-fill" /></a> : null
-                                                    }
-                                                    {
-                                                        v.social.linkedin ? <a href={v.social.linkedin}><i className="ri-linkedin-fill" /></a> : null
-                                                    }
-                                                </div> : null
-                                        }
+            {
+                data.map((d, i) => {
+                    return (
+                        <>
+                            {
+                                d.doctorName ? <div className="col-lg-6 mt-4 mt-lg-0">
+                                    <div className="member d-flex align-items-start">
+                                        <div className="pic"><img src={d.image} className="img-doctor" alt="" /></div>
+                                        <div className="member-info">
+                                            <h4>{d.doctorName}</h4>
+                                            <span>{d.post}</span>
+                                            <p>{d.description}</p>
+                                            <div className="social">
+                                                <a href><i className="ri-twitter-fill" /></a>
+                                                <a href><i className="ri-facebook-fill" /></a>
+                                                <a href><i className="ri-instagram-fill" /></a>
+                                                <a href> <i className="ri-linkedin-box-fill" /> </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+                                </div> : null
+                            }
+                            {
+                                d.medicineName ? <Card className='my-3'>
+                                    <CardBody>
+                                        <CardTitle><b>{d.medicineName}</b></CardTitle>
+                                        <CardText>Quantity : {d.quantity}</CardText>
+                                        <CardText>Price : {d.price}</CardText>
+                                        <CardText>Expiry : {d.expiry}</CardText>
+                                        <Button>Click</Button>
+                                    </CardBody>
+                                </Card> : null
+                            }
+                        </>
+                    )
+                })
+            }
+
         </>
     )
 }
