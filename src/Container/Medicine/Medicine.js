@@ -1,87 +1,57 @@
-import React from 'react'
-import List from '../component/List'
+import React from 'react';
+import List from '../../Component/List/List';
 
-const Medicine = () => {
-    const medicineData = [
+function Medicine(props) {
 
+    const orgData = [
         {
-
             id: 101,
-
-            medicineName: 'Abacavir',
-
+            name: 'Abacavir',
             quantity: 25,
-
             price: 150,
-
             expiry: 2022
-
         },
-
         {
-
             id: 102,
-
-            medicineName: 'Eltrombopag',
-
+            name: 'Eltrombopag',
             quantity: 90,
-
             price: 550,
-
             expiry: 2021
-
         },
-
         {
-
             id: 103,
-
-            medicineName: 'Meloxicam',
-
+            name: 'Meloxicam',
             quantity: 85,
-
             price: 450,
-
             expiry: 2025
-
         },
-
         {
-
             id: 104,
-
-            medicineName: 'Allopurinol',
-
+            name: 'Allopurinol',
             quantity: 50,
-
             price: 600,
-
             expiry: 2023
-
         },
-
         {
-
             id: 105,
-
-            medicineName: 'Phenytoin',
-
+            name: 'Phenytoin',
             quantity: 63,
-
             price: 250,
-
             expiry: 2021
-
         },
+    ];
 
-    ]
+    const getId =(id) => {
+        console.log(id);
+    }
+
     return (
-        <>
-            <div className="container">
-                <List data={medicineData} />
-            </div>
-        </>
-    )
+        <List
+        getId = {getId} 
+        Data = {orgData}
+        />
+    );
+    
 }
 
-export default Medicine
+export default Medicine;
