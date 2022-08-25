@@ -1,46 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './Component/Header/Header';
-import Footer from './Component/Footer/Footer';
-import Home from './Container/Home/Home';
-import Departments from './Container/Departments/Departments';
-import { Route, Switch } from 'react-router-dom';
-import Medicine from './Container/Medicine/Medicine';
-import Appointment from './Container/Appointment/BookAppointment';
-import Doctors from './Container/Doctors/Doctors';
-import About from './Container/About/About';
-import Contact from './Container/Contact/Contact';
-import BookAppointment from './Container/Appointment/BookAppointment';
-import ListAppointment from './Container/Appointment/ListAppointment';
-import ToggleThemecontext from './Context/ThemeContext';
-import { store } from './Redux/store';
-import { Provider } from 'react-redux';
-import Login from './Container/Login_signup/Login';
+import React from "react";
+import Header from "./Component/Header";
+import Footer from "./Component/Footer";
+import { Switch } from "react-router-dom";
+import Home from "./Container/Home";
+import Departments from "./Container/Departments";
+import Doctors from "./Container/Doctors";
+import Medicine from "./Container/Medicine";
+import About from "./Container/About";
+import Contact from "./Container/Contact";
+import BookAppointment from "./Container/Appoinment/BookAppointment";
+import ListAppointment from "./Container/Appoinment/ListAppointment";
+import Login from "./Container/Login";
+import PublicRoute from "./Route/PublicRoute";
+import PrivateRoute from "./Route/PrivateRoute";
+import { ThemeProvider } from "./context/ThemeContext";
 
-
-function App() {
+const App = () => {
   return (
     <>
-    <Provider store={store}>
-      <ToggleThemecontext>
+      <ThemeProvider>
         <Header />
         <Switch>
-          <Route path={"/"} exact component={Home} />
-          <Route path={"/departments"} exact component={Departments} />
-          <Route path={"/doctors"} exact component={Doctors} />
-          <Route path={"/about"} exact component={About} />
-          <Route path={"/contact"} exact component={Contact} />
-          <Route path={"/login_signup"} exact component={Login} />
-          <Route path={"/medicines"} exact component={Medicine} />
-          <Route path={"/appointment"} exact component={Appointment} />
-          <Route path={"/bookAppointment"} exact component={BookAppointment} />
-          <Route path={"/listAppointment"} exact component={ListAppointment} />
+          <PublicRoute exact path="/" component={Home} />
+          <PublicRoute exact path="/departments" component={Departments} />
+          <PublicRoute exact path="/doctors" component={Doctors} />
+          <PublicRoute exact path="/medicine" component={Medicine} />
+          <PublicRoute exact path="/about" component={About} />
+          <PublicRoute exact path="/contact" component={Contact} />
+          <PrivateRoute
+            exact
+            path="/book-appointment"
+            component={BookAppointment}
+          />
+          <PrivateRoute
+            exact
+            path="/list-appointment"
+            component={ListAppointment}
+          />
+          <PublicRoute
+            exact
+            path="/login"
+            restricted={true}
+            component={Login}
+          />
         </Switch>
         <Footer />
-      </ToggleThemecontext>
-    </Provider>
+      </ThemeProvider>
     </>
   );
-}
+};
 
 export default App;
